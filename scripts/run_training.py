@@ -1,28 +1,15 @@
 #!/usr/bin/env python3
-"""
-Run the full smart intersection anomaly pipeline.
-"""
+import os, sys
 
-import os
-import sys
+# מקבל נתיב הפרויקט
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC_DIR = os.path.join(PROJECT_ROOT, "src")
 
-# נתיב לתיקיית הסקריפט (D:\scripts)
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+# מוסיף את src ל-PYTHONPATH
+sys.path.insert(0, SRC_DIR)
 
-# נתיב לשורש הפרויקט (D:\)
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
-
-# להוסיף את שורש הפרויקט ל-PYTHONPATH
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
-
-# עכשיו אפשר לייבא ישירות את הפייפליין מה-root
-from train_pipeline import run_full_pipeline
-
-
-def main():
-    run_full_pipeline()
-
+# עכשיו ניתן לייבא את החבילה
+from smart_intersection.train_pipeline import run_full_pipeline
 
 if __name__ == "__main__":
-    main()
+    run_full_pipeline()
